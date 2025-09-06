@@ -6,6 +6,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/i4o-oss/ornn/config"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -13,13 +14,10 @@ import (
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Create a new project",
+	PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
+		return config.Init(cmd)
+	},
 	RunE: func(cmd *cobra.Command, args []string) error {
 		router := viper.GetString("router")
 		fmt.Printf("create command called, using router: %s\n", router)
@@ -30,13 +28,7 @@ to quickly create a Cobra application.`,
 func init() {
 	rootCmd.AddCommand(createCmd)
 
-	// Here you will define your flags and configuration settings.
+	createCmd.PersistentFlags().StringVar(&config.ConfigurationFile, "config", "", "config file (default is $HOME/.ornn.toml)")
 
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// createCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
 	createCmd.Flags().String("router", "net/http", "Router to use for the project")
 }
