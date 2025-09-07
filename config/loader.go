@@ -11,6 +11,17 @@ import (
 
 var ConfigurationFile string
 
+type Configuration struct {
+	Cache        string
+	Database     string
+	FileStorage  string
+	Queue        string
+	RateLimiting string
+	Router       string
+	SMTP         bool
+	Webhooks     bool
+}
+
 func Init(cmd *cobra.Command) error {
 	if ConfigurationFile != "" {
 		viper.SetConfigFile(ConfigurationFile)

@@ -16,17 +16,16 @@ var rootCmd = &cobra.Command{
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
-	if err := fang.Execute(context.Background(), rootCmd); err != nil {
+	if err := fang.Execute(context.Background(), rootCmd, fang.WithoutCompletions(), fang.WithoutManpage()); err != nil {
 		os.Exit(1)
 	}
 }
 
 func init() {
-	// Here you will define your flags and configuration settings.
-	// Cobra supports persistent flags, which, if defined here,
-	// will be global for your application.
-
-	// Cobra also supports local flags, which will only run
-	// when this action is called directly.
-	// rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.SetHelpCommand(&cobra.Command{
+		Use:    "no-help",
+		Hidden: true,
+		Run:    func(cmd *cobra.Command, args []string) {}, // no-op run function
+	})
+	rootCmd.AddCommand(CreateCmd)
 }
