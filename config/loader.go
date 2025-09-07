@@ -18,6 +18,8 @@ type Configuration struct {
 	Queue        string
 	RateLimiting string
 	Router       string
+	Tasks        bool
+	Scheduler    bool
 	SMTP         bool
 	Webhooks     bool
 }
