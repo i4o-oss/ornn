@@ -1,6 +1,3 @@
-/*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-*/
 package cmd
 
 import (
@@ -34,8 +31,12 @@ func init() {
 		cmd.Parent().HelpFunc()(cmd, args)
 	})
 
-	// File-based configuration
-	CreateCmd.Flags().StringVar(&config.ConfigurationFile, "config", "", "config file location")
+	/*
+		// File-based configuration
+		home, err := os.UserHomeDir()
+		cobra.CheckErr(err)
+		CreateCmd.Flags().StringVar(&config.ConfigurationFile, "config", home+"/.ornn.toml", "config file location")
+	*/
 
 	// Flag-based configuration
 	CreateCmd.Flags().StringVar(&configuration.Auth, "auth", "Email/Password", "Email/Password / Magic Link")
