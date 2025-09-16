@@ -14,5 +14,8 @@ install:
 test:
 	@go test -v ./...
 
+tidy:
+	@go mod tidy
+
 vet:
 	@go vet -v ./...
