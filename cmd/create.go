@@ -35,9 +35,10 @@ func init() {
 	})
 
 	// File-based configuration
-	CreateCmd.Flags().StringVar(&config.ConfigurationFile, "config", "$HOME/.ornn.toml", "config file location")
+	CreateCmd.Flags().StringVar(&config.ConfigurationFile, "config", "", "config file location")
 
 	// Flag-based configuration
+	CreateCmd.Flags().StringVar(&configuration.Auth, "auth", "Email/Password", "Email/Password / Magic Link")
 	CreateCmd.Flags().StringVar(&configuration.Cache, "cache", "", "Redis / Memcached / Valkey")
 	CreateCmd.Flags().StringVar(&configuration.Database, "database", "PostgreSQL", "PostgreSQL / SQLite")
 	CreateCmd.Flags().StringVar(&configuration.FileStorage, "file-storage", "", "Cloudflare R2 / AWS S3")

@@ -12,6 +12,7 @@ import (
 var ConfigurationFile string
 
 type Configuration struct {
+	Auth         string
 	Cache        string
 	Database     string
 	FileStorage  string
