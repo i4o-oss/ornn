@@ -8,6 +8,9 @@ build:
 default:
 	@just --list
 
+fmt:
+	@go fmt ./...
+
 install:
 	@go install ./...
 
