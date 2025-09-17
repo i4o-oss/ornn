@@ -11,6 +11,12 @@ import (
 
 var ConfigurationFile string
 
+type ProjectSettings struct {
+	Name          string
+	Path          string
+	Configuration Configuration
+}
+
 type Configuration struct {
 	Auth         string
 	Cache        string
